@@ -1,10 +1,10 @@
 #include "commands.hh"
 #include <string>
 #include <vector>
+#include <iostream>
 
 void Register::execute(std::vector<std::string> args) {
-    //Create User
-    //Add User to UserList
+    std::cout << "WTF" << std::endl;
 }
 
 std::string Register::getName() {

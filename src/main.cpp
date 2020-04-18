@@ -6,10 +6,10 @@
 #include "./cli/commands.hh"
 
 int main() {
-    Register* registerCommand = new Register();
+    Register registerCommand = Register();
 
-    CLIController* cliController = new CLIController();
-    cliController->register_command(registerCommand);
+    CLIController cliController = CLIController();
+    cliController.register_command(&registerCommand);
   
     
     std::string input;
@@ -28,9 +28,6 @@ int main() {
             args.push_back(arg);
         }
 
-        cliController->execute_command(commandName, args);
-
-        
-        
+        cliController.execute_command(commandName, args);
     }
 }
