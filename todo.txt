@@ -1,0 +1,2 @@
+Create a Makefile
+Implement the functionality
