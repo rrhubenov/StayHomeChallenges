@@ -1,16 +1,12 @@
-#include <string>
+#include "../../include/challenge/challenge.hh"
 
-Challenge(ChallgenIdLedger idLedger, std::string name) {
-    this.id = idLedger.getId() + 1;
-
-    if(this.isNameValid()) {
-        this.name = name;
-    } else {
-        throw std::runtime_error("Challenge name is not valid: 
-                must begin with a '#' and be <= 31 characters");
-    }
+Challenge::Challenge(const char* name) {
+    if(this->isNameValid(name)) {
+        this->name = name;
+    } 
 }
 
-bool isNameValid(std::string name) {
+bool Challenge::isNameValid(const char* name) {
     //Validate name starts with # and is <= 31 chars
+    return true;
 }

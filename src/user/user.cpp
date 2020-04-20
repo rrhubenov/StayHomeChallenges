@@ -1,29 +1,31 @@
-#include "user.hh"
+#include "../../include/user/user.hh"
 
-User::User(std::string name, short age, std::string email) {
-    
+User::User(char* name, short age, char* email) {
+    this->name = name;    
+    this->age = age;
+    this->email = email;
 }
 
-std::string User::getName() {
-    return this.name;
+char* User::getName() {
+    return this->name;
 }
 
 short User::getAge() {
-    return this.age;
+    return this->age;
 }
 
-std::string User::getEmail() {
-    return this.email;
+char* User::getEmail() {
+    return this->email;
 }
 
-bool User::validateName(std::string name) {
-
+bool User::validateName(const char* name) {
+    return true;
 }
 
 bool User::validateAge(int age) {
-
+    return true;
 }
 
-bool User::validateEmail(std::string email) {
-
+bool User::validateEmail(const char* email) {
+    return true;
 }
