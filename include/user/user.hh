@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 class User {
@@ -6,9 +8,9 @@ class User {
         short age;
         char* email;
 
-        bool validateName(const char* name);
-        bool validateAge(int age);
-        bool validateEmail(const char* email);
+        bool validateName(char* name);
+        bool validateAge(short age);
+        bool validateEmail(char* email);
 
     public:
         User(char* name, short age, char* email);

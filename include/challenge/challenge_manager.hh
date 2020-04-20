@@ -1,5 +1,6 @@
+#pragma once
+
 #include "./challenge.hh"
-#include <vector>
 
 class ChallengeManager {
     private:

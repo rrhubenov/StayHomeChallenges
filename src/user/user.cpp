@@ -1,9 +1,8 @@
 #include "../../include/user/user.hh"
 
-User::User(char* name, short age, char* email) {
-    this->name = name;    
-    this->age = age;
-    this->email = email;
+User::User(char* name, short age, char* email)
+    : name(name), age(age), email(email) {
+
 }
 
 char* User::getName() {
@@ -18,14 +17,14 @@ char* User::getEmail() {
     return this->email;
 }
 
-bool User::validateName(const char* name) {
+bool User::validateName(char* name) {
     return true;
 }
 
-bool User::validateAge(int age) {
+bool User::validateAge(short age) {
     return true;
 }
 
-bool User::validateEmail(const char* email) {
+bool User::validateEmail(char* email) {
     return true;
 }

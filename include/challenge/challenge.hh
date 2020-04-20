@@ -4,12 +4,12 @@
 
 class Challenge {
     private:
-        const char* name;
+        char* name;
 
-        bool isNameValid(const char* name); 
+        bool isNameValid(char* name); 
     public:
 
-        Challenge(const char* name);
+        Challenge(char* name);
 
-        const char* getName();
+        char* getName();
 };

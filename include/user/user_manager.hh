@@ -1,5 +1,6 @@
+#pragma once
+
 #include "./user.hh"
-#include <vector>
 
 class UserManager {
     private:
