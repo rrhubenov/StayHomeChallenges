@@ -11,10 +11,36 @@ Register::Register(UserManager* userManager) {
     this->userManager = userManager;
 }
 
+bool isNumber(char* arg) {
+    short count = 0;
+    while(arg[count]) {
+        if('0' > arg[count] || arg[count] > '9') {
+            return false;
+        }
+        count++;
+    }
+    return true;
+}
+
 void Register::execute(char args[256][256]) {
-    User* user = new User(args[0], atoi(args[1]), args[2]);
-    this->userManager->addUser(user);
-    std::cout << "Successfully added user" << "\n";
+    char* name = args[0];
+
+    if(isNumber(args[1])) {
+        short age = atoi(args[1]);
+
+        if(args[2] == NULL) {
+            this->userManager->createUser(name, age);
+        } else {
+            char* email = args[2];
+            this->userManager->createUser(name, age, email);
+        }
+
+    } else {
+        char* email = args[1];
+        this->userManager->createUser(name, email);
+    }
+
+    std::cout << "Successfully created user" << "\n";
 }
 
 const char* Register::getName() {
@@ -39,8 +65,13 @@ const char* FinishChallenge::getName() {
     return "finish";
 }
 
+ProfileInfo::ProfileInfo(UserManager* userManager) {
+    this->userManager = userManager;
+}
+
 void ProfileInfo::execute(char args[256][256]) {
-    //Return all of the users info
+    User* user = this->userManager->getUserByName(args[0]);
+    user->print();
 }
 
 const char* ProfileInfo::getName() {

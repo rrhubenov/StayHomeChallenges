@@ -10,6 +10,7 @@ class ICommand {
 };
 
 class Register: public ICommand {
+    private:
         UserManager* userManager;
     public:
         Register(UserManager* userManager);
@@ -31,7 +32,11 @@ class FinishChallenge: public ICommand {
 };
 
 class ProfileInfo: public ICommand {
+    private:
+        UserManager* userManager;
     public:
+        ProfileInfo(UserManager* userManager);
+
         void execute(char args[256][256]);
         const char* getName();
 };

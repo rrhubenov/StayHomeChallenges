@@ -25,7 +25,7 @@ void CLIController::begin_reading() {
         char commandName[256];
         
         short tokenCount = 0;
-        char args[256][256];
+        char args[256][256] = {{0}};
 
         while(pch != NULL) {
             if(tokenCount == 0) {
