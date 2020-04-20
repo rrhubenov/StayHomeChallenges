@@ -10,6 +10,8 @@ User::User(short id, char* name, short age, char* email){
     this->name = name;
     this->age = age;
     this->email = email;
+
+    std::cout << "WTF";
 }
 
 User::User(short id, char* name, short age) {
