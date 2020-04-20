@@ -9,4 +9,6 @@ int main() {
     cliController.register_command(registerCommand);
 
     cliController.begin_reading();
+
+    return 0;
 }

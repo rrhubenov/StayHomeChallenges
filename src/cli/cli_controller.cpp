@@ -9,27 +9,35 @@ CLIController::CLIController() {
 
 CLIController::~CLIController() {
     for(unsigned i; i < this->commands_count; i++) {
-        delete[] this->commands[i];
+        delete this->commands[i];
     }
 }
 
 void CLIController::begin_reading() {
-    char* input;
-
     while(true) {
+        char input[256];
+
+        std::cout << "> ";
         std::cin.getline(input, 256);
-        std::cout << "WTF";
+
         char* pch = strtok(input, " ");
-        char* commandName;
-        strcpy(commandName, pch);
+
+        char commandName[256];
         
         short tokenCount = 0;
         char args[256][256];
 
         while(pch != NULL) {
-            strcpy(args[tokenCount], pch);
-            tokenCount++;
-            pch = strtok(input, " ");
+            if(tokenCount == 0) {
+                strcpy(commandName, pch);
+                tokenCount++;
+                continue;
+            }
+            pch = strtok(NULL, " ");
+            if(pch != NULL) {
+                strcpy(args[tokenCount - 1], pch);
+                tokenCount++;
+            }
         }
 
         this->execute_command(commandName, args);
@@ -37,7 +45,7 @@ void CLIController::begin_reading() {
 }
 
 void CLIController::register_command(ICommand* command) {
-    this->commands[this->commands_count+1] = command;
+    this->commands[this->commands_count] = command;
     this->commands_count++;
 }
 
@@ -46,7 +54,8 @@ void CLIController::execute_command(char* command_name,
     for(unsigned i = 0; i < this->commands_count; i++) {
         if(!strcmp(this->commands[i]->getName(), command_name)) {
             this->commands[i]->execute(args);
-            break;
+            return;
         }
     }
+    std::cout << command_name << ": Command not found" << "\n";
 }

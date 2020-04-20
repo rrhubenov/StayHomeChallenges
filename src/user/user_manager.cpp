@@ -5,7 +5,7 @@ UserManager::UserManager() {
 }
 
 void UserManager::addUser(User* user) {
-    this->users[this->users_count+1] = user;
+    this->users[this->users_count] = user;
     this->users_count++;
 }
 
