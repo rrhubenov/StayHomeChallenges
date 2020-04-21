@@ -28,7 +28,7 @@ void Register::execute(char args[256][256]) {
     if(isNumber(args[1])) {
         short age = atoi(args[1]);
 
-        if(args[2] == NULL) {
+        if(!strcmp(args[2], "")) {
             this->userManager->createUser(name, age);
         } else {
             char* email = args[2];

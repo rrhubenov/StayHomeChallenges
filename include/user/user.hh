@@ -5,9 +5,9 @@
 class User {
     private:
         short id;
-        char* name;
+        char name[256];
         short age;
-        char* email;
+        char email[256];
 
         bool validateName(char* name);
         bool validateAge(short age);

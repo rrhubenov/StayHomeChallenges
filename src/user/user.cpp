@@ -1,5 +1,6 @@
 #include "../../include/user/user.hh"
 #include <iostream>
+#include <string.h>
 
 User::User(short id, char* name, short age, char* email){
     this->validateName(name);
@@ -7,11 +8,9 @@ User::User(short id, char* name, short age, char* email){
     this->validateEmail(email);
 
     this->id = id;
-    this->name = name;
+    strcpy(this->name, name);
     this->age = age;
-    this->email = email;
-
-    std::cout << "WTF";
+    strcpy(this->email, email);
 }
 
 User::User(short id, char* name, short age) {
@@ -19,9 +18,9 @@ User::User(short id, char* name, short age) {
     this->validateAge(age);
 
     this->id = id;
-    this->name = name;
+    strcpy(this->name, name);
     this->age = age;
-    this->email = NULL;
+    strcpy(this->email, "");
 }
 
 User::User(short id, char* name, char* email) {
@@ -29,18 +28,26 @@ User::User(short id, char* name, char* email) {
     this->validateEmail(email);
 
     this->id = id;
-    this->name = name;
-    this->email = email;
+    strcpy(this->name, name);
     this->age = 0;
+    strcpy(this->email, "");
 }
 
 void User::print() {
-    std::cout << this->getId() << "\n";
-    std::cout << this->getName() << "\n";
-    if(this->getAge() != 0) {
+    std::cout << "ID: " << this->getId() << "\n";
+    std::cout << "Name: " << this->getName() << "\n";
+
+    std::cout << "Age: ";
+    if(this->getAge() == 0) {
+        std::cout << "Unknown" << "\n";
+    } else {
         std::cout << this->getAge() << "\n";
     }
-    if(this->getEmail() != NULL) {
+
+    std::cout << "Email: ";
+    if(!strcmp(this->getEmail(), "")) {
+        std::cout << "Unknown" << "\n";
+    } else {
         std::cout << this->getEmail() << "\n";
     }
 }
