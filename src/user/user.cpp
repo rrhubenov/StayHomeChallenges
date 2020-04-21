@@ -52,6 +52,11 @@ void User::print() {
     }
 }
 
+void User::addChallenge(Challenge* challenge) {
+    this->activeChallenges[this->activeChallengesCount] = challenge;
+    this->activeChallengesCount++;
+}
+
 char* User::getName() {
     return this->name;
 }

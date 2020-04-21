@@ -1,15 +1,17 @@
 #pragma once
 
-#include <string>
-
 class Challenge {
     private:
-        char* name;
+        char name[32];
+        double rating;
 
-        bool isNameValid(char* name); 
+        bool validateName(char* name); 
     public:
 
         Challenge(char* name);
 
+        void rate(double rating);
+
         char* getName();
+        double getRating();
 };

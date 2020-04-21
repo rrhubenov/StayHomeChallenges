@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include "../challenge/challenge.hh"
 
 class User {
     private:
@@ -8,6 +8,8 @@ class User {
         char name[256];
         short age;
         char email[256];
+        Challenge* activeChallenges[65535];
+        short activeChallengesCount;
 
         bool validateName(char* name);
         bool validateAge(short age);
@@ -19,6 +21,8 @@ class User {
         User(short id, char* name, char* email);
 
         void print();
+
+        void addChallenge(Challenge* challenge);
 
         short getId();
         char* getName();

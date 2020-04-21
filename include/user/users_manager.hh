@@ -3,7 +3,7 @@
 #include "./user.hh"
 #include "./id_ledger.hh"
 
-class UserManager {
+class UsersManager {
     private:
         User* users[1024];
         short users_count;
@@ -11,7 +11,7 @@ class UserManager {
 
         void addUser(User* user);
     public:
-        UserManager();
+        UsersManager();
 
         void createUser(char* name, short age, char* email);
         void createUser(char* name, short age);
@@ -20,5 +20,5 @@ class UserManager {
         User* getUserById(short id);
         User* getUserByName(char* naem);
 
-        ~UserManager();
+        ~UsersManager();
 };

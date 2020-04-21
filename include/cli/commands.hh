@@ -1,5 +1,6 @@
 #pragma once
-#include "../user/user_manager.hh"
+#include "../user/users_manager.hh"
+#include "../challenge/challenges_manager.hh"
 
 class ICommand {
     public:
@@ -11,16 +12,21 @@ class ICommand {
 
 class Register: public ICommand {
     private:
-        UserManager* userManager;
+        UsersManager* usersManager;
     public:
-        Register(UserManager* userManager);
+        Register(UsersManager* usersManager);
 
         void execute(char args[256][256]);
         const char* getName();
 };
 
 class CreateChallenge: public ICommand {
+    private:
+        ChallengesManager* challengesManager;
+        UsersManager* usersManager;
     public:
+        CreateChallenge(ChallengesManager* challengesManager, UsersManager* usersManager);
+
         void execute(char args[256][256]);
         const char* getName();
 };
@@ -33,9 +39,9 @@ class FinishChallenge: public ICommand {
 
 class ProfileInfo: public ICommand {
     private:
-        UserManager* userManager;
+        UsersManager* usersManager;
     public:
-        ProfileInfo(UserManager* userManager);
+        ProfileInfo(UsersManager* usersManager);
 
         void execute(char args[256][256]);
         const char* getName();

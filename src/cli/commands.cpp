@@ -1,14 +1,15 @@
 #include "../../include/cli/commands.hh"
-#include "../../include/user/user_manager.hh"
+#include "../../include/user/users_manager.hh"
 #include "../../include/user/user.hh"
+#include "../../include/challenge/challenges_manager.hh"
 #include <stdlib.h>
 #include <iostream>
 
 
 ICommand::~ICommand() {}
 
-Register::Register(UserManager* userManager) {
-    this->userManager = userManager;
+Register::Register(UsersManager* usersManager) {
+    this->usersManager = usersManager;
 }
 
 bool isNumber(char* arg) {
@@ -29,15 +30,15 @@ void Register::execute(char args[256][256]) {
         short age = atoi(args[1]);
 
         if(!strcmp(args[2], "")) {
-            this->userManager->createUser(name, age);
+            this->usersManager->createUser(name, age);
         } else {
             char* email = args[2];
-            this->userManager->createUser(name, age, email);
+            this->usersManager->createUser(name, age, email);
         }
 
     } else {
         char* email = args[1];
-        this->userManager->createUser(name, email);
+        this->usersManager->createUser(name, email);
     }
 
     std::cout << "Successfully created user" << "\n";
@@ -48,8 +49,29 @@ const char* Register::getName() {
 }
 
 void CreateChallenge::execute(char args[256][256]) {
-    //Create Challenge
-    //Add Challenge to ChallengeList
+    User* userChallenger = this->usersManager->getUserByName(args[0]);
+
+    User* challengedUsers[256];
+
+    short args_iterator = 2;
+    short challenged_users_iterator = 0;
+
+    while(strcmp(args[args_iterator], "")) {
+        challengedUsers[challenged_users_iterator] = this->usersManager->getUserByName(args[args_iterator]);
+        args_iterator++;
+        challenged_users_iterator++;
+    }
+
+    Challenge* challenge = this->challengesManager->getChallengeByName(args[1]);
+
+    if(challenge == nullptr) {
+        challenge = this->challengesManager->createChallenge(args[1]);
+    }
+
+    for(unsigned i = 0; i < challenged_users_iterator-1; i++) {
+        challengedUsers[i]->addChallenge(challenge);
+    }
+
 }
 
 const char* CreateChallenge::getName() {
@@ -65,12 +87,12 @@ const char* FinishChallenge::getName() {
     return "finish";
 }
 
-ProfileInfo::ProfileInfo(UserManager* userManager) {
-    this->userManager = userManager;
+ProfileInfo::ProfileInfo(UsersManager* usersManager) {
+    this->usersManager = usersManager;
 }
 
 void ProfileInfo::execute(char args[256][256]) {
-    User* user = this->userManager->getUserByName(args[0]);
+    User* user = this->usersManager->getUserByName(args[0]);
     user->print();
 }
 
