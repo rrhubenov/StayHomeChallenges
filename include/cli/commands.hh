@@ -32,7 +32,13 @@ class CreateChallenge: public ICommand {
 };
 
 class FinishChallenge: public ICommand {
+    private:
+        ChallengesManager* challengesManager;
+        UsersManager* usersManager;
+
     public:
+        FinishChallenge(ChallengesManager* challengesManager, UsersManager* usersManager);
+
         void execute(char args[256][256]);
         const char* getName();
 };
@@ -48,7 +54,11 @@ class ProfileInfo: public ICommand {
 };
 
 class ListBy: public ICommand {
+    private:
+        ChallengesManager* challengesManager;
     public:
+        ListBy(ChallengesManager* challengesManager);
+
         void execute(char args[256][256]);
         const char* getName();
 };

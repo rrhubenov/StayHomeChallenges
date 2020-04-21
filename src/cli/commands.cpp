@@ -48,6 +48,9 @@ const char* Register::getName() {
     return "registration";
 }
 
+CreateChallenge::CreateChallenge(ChallengesManager* challengesManager, UsersManager* usersManager) 
+    :challengesManager(challengesManager), usersManager(usersManager) {}
+
 void CreateChallenge::execute(char args[256][256]) {
     User* userChallenger = this->usersManager->getUserByName(args[0]);
 
@@ -78,7 +81,14 @@ const char* CreateChallenge::getName() {
     return "challenge";
 }
 
+FinishChallenge::FinishChallenge(ChallengesManager* challengesManager, UsersManager* usersManager)
+    : challengesManager(challengesManager), usersManager(usersManager) {}
+
 void FinishChallenge::execute(char args[256][256]) {
+    char* challenge_name = args[0];
+    short user_id = args[1];
+    double rating = atof(args[2]);
+
     //Remove challenge from the Users challenge list
     //Update the Challenge's rating
 }
@@ -100,8 +110,17 @@ const char* ProfileInfo::getName() {
     return "profile_info";
 }
 
+ListBy::ListBy(ChallengesManager* challengesManager): challengesManager(challengesManager) {}
+
 void ListBy::execute(char args[256][256]) {
-    //List all the challenges sorted by the argument
+    char* sortBy = args[0];
+    
+    short challengesCount = this->challengesManager->getChallengesCount();
+    Challenge** challenges = this->challengesManager->getAllChallenges();
+
+    for(unsigned i = 0; i < challengesCount; i++) {
+        challenges[i]->print();
+    }
 }
 
 const char* ListBy::getName() {

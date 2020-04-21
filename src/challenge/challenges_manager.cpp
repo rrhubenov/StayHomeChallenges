@@ -30,3 +30,11 @@ Challenge* ChallengesManager::getChallengeByName(char* name) {
     }
     return nullptr;
 }
+
+Challenge** ChallengesManager::getAllChallenges() {
+    return this->challenges;
+}
+
+short ChallengesManager::getChallengesCount() {
+    return this->challenges_count;
+}

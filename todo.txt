@@ -1,5 +1,0 @@
-Create a Makefile
-Figure out what the problem with the email is
-Challenges
-Validation for the user fields
-Make it so Unknown is written if a field is null for a User

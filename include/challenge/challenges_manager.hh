@@ -8,9 +8,12 @@ class ChallengesManager {
         short challenges_count;
     public:
         ChallengesManager();
+        
         Challenge* createChallenge(char* name);
-
         Challenge* getChallengeByName(char* name);
+
+        Challenge** getAllChallenges();
+        short getChallengesCount();
 
         ~ChallengesManager();
 };
